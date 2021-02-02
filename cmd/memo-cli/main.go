@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"os/user"
+	//"os/user"
 	"time"
 
 	"github.com/BurntSushi/toml"
@@ -32,17 +32,18 @@ func main() {
 		os.Exit(2)
 	}
 
-	usr, err := user.Current()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to get current user: %s\n", err.Error())
-		os.Exit(2)
-	}
+	//usr, err := user.Current()
+	//if err != nil {
+	//	fmt.Fprintf(os.Stderr, "Failed to get current user: %s\n", err.Error())
+	//	os.Exit(2)
+	//}
 
 	hostname, err := os.Hostname()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to get current hostname: %s\n", err.Error())
-		os.Exit(2)
-	}
+	fmt.Fprintf(os.Stderr,hostname)
+	//if err != nil {
+	//	fmt.Fprintf(os.Stderr, "Failed to get current hostname: %s\n", err.Error())
+	//	os.Exit(2)
+	//}
 
 	configFile, err = homedir.Expand(configFile)
 	if err != nil {
@@ -80,9 +81,9 @@ func main() {
 		os.Exit(2)
 	}
 	tags := []string{
-		"memo",
-		"user:" + usr.Username,
-		"host:" + hostname,
+		//"memo",
+		//"user:" + usr.Username,
+		//"host:" + hostname,
 	}
 	tags, err = memo.BuildTags(tags, extraTags)
 	if err != nil {
